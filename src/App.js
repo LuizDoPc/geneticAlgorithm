@@ -108,13 +108,20 @@ const App = () => {
           flexDirection: 'row',
           marginBottom: '30px',
         }}>
-        {generations.map((_, index) => (
-          <button
-            key={index}
-            onClick={() =>
-              setCurrentGeneration(index)
-            }>{`Geração ${index}`}</button>
-        ))}
+        <button
+          onClick={() => {
+            if (currentGeneration > 0) setCurrentGeneration((old) => old - 1);
+          }}>
+          Geração Anterior
+        </button>
+        {`Geração ${currentGeneration}`}
+        <button
+          onClick={() => {
+            if (currentGeneration < generations.length - 1)
+              setCurrentGeneration((old) => old + 1);
+          }}>
+          Próxima Geração
+        </button>
       </div>
       <Chart
         options={data.options}
